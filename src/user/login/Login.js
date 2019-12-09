@@ -14,9 +14,11 @@ class Login extends Component {
       />
     }
 
-    return <div>
-      <h1>Login to Movie Nights</h1>
-      <SocialLogin/>
+    return <div className="row">
+      <div className="col-12 m-auto">
+        <h1 className="text-center">Login to Movie Nights</h1>
+        <SocialLogin/>
+      </div>
     </div>
   }
 
@@ -25,9 +27,9 @@ class Login extends Component {
 class SocialLogin extends Component {
   render() {
     return (
-      <div>
-        <a href={GOOGLE_AUTH_URL}>Log in with Google</a>
-      </div>
+      <span className="m-auto text-center">
+        <a className="text-center" href={GOOGLE_AUTH_URL}>Log in with Google</a>
+      </span>
     )
   }
 }
