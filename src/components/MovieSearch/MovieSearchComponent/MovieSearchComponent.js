@@ -65,7 +65,7 @@ class MovieSearchComponent extends Component {
       <div className="col-12 m-auto">
         <SearchBar onSearch={this.handleSearch}/>
         {this.state.totalMovies > 0 && this.renderPagination()}
-        {!this.state.loading && <MovieList movies={this.state.movies}/>}
+        {!this.state.loading && <MovieList movieClicked={this.props.movieClicked} movies={this.state.movies}/>}
         {this.state.loading && <h3 className="text-center">Loading...</h3>}
         {this.state.totalMovies > 0 && this.renderPagination()}
       </div>

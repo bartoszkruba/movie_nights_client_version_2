@@ -6,9 +6,11 @@ import Navigation from "./components/navbar/Navigation";
 import Login from './user/login/Login';
 import Index from './components/Index/Index';
 import MovieSearchPage from "./components/MovieSearch/MovieSearchPage/MovieSearchPage";
+import MovieDetailsPage from "./components/MovieDetails/MovieDetailsPage";
 import OAuth2RedirectHandler from "./user/oauth2/OAuth2RedirectHandler";
 import {ACCESS_TOKEN} from "./constants/constants";
 import axios from './axios/axios'
+
 
 class App extends Component {
 
@@ -57,6 +59,7 @@ class App extends Component {
         <Route exact path="/login" component={login}/>
         <Route exact path="/oauth2/redirect" component={oauth2}/>
         <Route exact path="/movies" component={movieSearchPage}/>
+        <Route path="/movie/:id" render={props => <MovieDetailsPage {...props} setUser={this.setUser} />}/>
       </div>
     </Router>
   }

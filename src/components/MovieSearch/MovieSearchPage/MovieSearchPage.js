@@ -1,19 +1,25 @@
 import React, {Component} from 'react'
-import SearchBar from "../SearchBar/SearchBar";
-import MovieList from "../MovieList/MovieList";
 import MovieSearchComponent from '../MovieSearchComponent/MovieSearchComponent'
-import axios from '../../../axios/axios';
-import {ACCESS_TOKEN} from "../../../constants/constants";
-import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
+import {Redirect} from "react-router-dom";
 
 class MovieSearchPage extends Component {
 
+  state = {
+    redirect: ""
+  };
+
+  movieClicked = id => {
+    this.setState({redirect: "/movie/" + id})
+  };
+
   render() {
+    if (this.state.redirect) return <Redirect to={this.state.redirect}/>;
+
     return <div>
       <div className="row mb-5">
         <h1 className="m-auto">Search For Movies</h1>
       </div>
-      <MovieSearchComponent/>
+      <MovieSearchComponent movieClicked={this.movieClicked}/>
     </div>
   }
 }

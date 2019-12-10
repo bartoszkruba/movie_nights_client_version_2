@@ -35,4 +35,14 @@ const getMoviePage = async (token, title, type, year, page) => {
 
 };
 
-export default {getUser, getMoviePage}
+const getMovie = async (token, id) => {
+  return await client.get("/api/movie/" + id, {
+    headers: {
+      'Content-Type': "application/json",
+      Authorization: "Bearer " + token,
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+};
+
+export default {getUser, getMoviePage, getMovie}
