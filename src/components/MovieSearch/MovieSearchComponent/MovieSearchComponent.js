@@ -34,8 +34,6 @@ class MovieSearchComponent extends Component {
         }
       })
     } catch (e) {
-      localStorage.removeItem(ACCESS_TOKEN);
-      this.props.setUser(null);
       this.props.redirect("/");
     }
     this.setState({loading: false});

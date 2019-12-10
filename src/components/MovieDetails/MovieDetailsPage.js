@@ -18,7 +18,6 @@ class MovieDetailsPage extends Component {
   fetchMovie = async () => {
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (!token) {
-      this.props.setUser(null);
       this.setState({redirect: "/"});
     }
 
@@ -26,9 +25,7 @@ class MovieDetailsPage extends Component {
       const response = await axios.getMovie(token, this.props.match.params.id);
       this.setState({movie: response.data})
     } catch (e) {
-      this.props.setUser(null);
       this.setState({redirect: "/"});
-      localStorage.removeItem(ACCESS_TOKEN)
     }
   };
 

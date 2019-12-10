@@ -4,7 +4,6 @@ class MovieListItem extends Component {
 
   render() {
     const movie = this.props.movie;
-    console.log(movie)
     return <div className="row mt-4 p-5 movie-item" style={{
       border: "1px solid black",
       boxShadow: "2px 2px 2px black"

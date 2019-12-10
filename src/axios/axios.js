@@ -45,4 +45,52 @@ const getMovie = async (token, id) => {
   })
 };
 
-export default {getUser, getMoviePage, getMovie}
+const getFriends = async (token) => {
+  return await client.get("/api/user/me/friends", {
+    headers: {
+      'Content-Type': "application/json",
+      Authorization: "Bearer " + token,
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+};
+
+const getCreatedFriendRequests = async (token) => {
+  return await client.get("/api/user/me/createdFriendRequest", {
+    headers: {
+      'Content-Type': "application/json",
+      Authorization: "Bearer " + token,
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+};
+
+const getPendingFriendRequests = async (token) => {
+  return await client.get("/api/user/me/pendingFriendRequest", {
+    headers: {
+      'Content-Type': "application/json",
+      Authorization: "Bearer " + token,
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+};
+
+const sendFriendRequest = async (token, email) => {
+  return await client.post("/api/user/friendRequest?email=" + encodeURI(email), {}, {
+    headers: {
+      'Content-Type': "application/json",
+      Authorization: "Bearer " + token,
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+};
+
+export default {
+  getUser,
+  getMoviePage,
+  getMovie,
+  getFriends,
+  getCreatedFriendRequests,
+  getPendingFriendRequests,
+  sendFriendRequest
+}

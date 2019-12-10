@@ -7,7 +7,6 @@ import {
   NavbarToggler,
   NavItem,
 } from "reactstrap";
-import {ACCESS_TOKEN} from "../../constants/constants";
 
 
 class Navigation extends Component {
@@ -28,8 +27,6 @@ class Navigation extends Component {
 
   logout = () => {
     this.props.setUser(null);
-    localStorage.removeItem(ACCESS_TOKEN);
-
     this.props.redirect("/")
   };
 
@@ -51,6 +48,9 @@ class Navigation extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               {this.props.user && <Fragment>
+                <RouterLink className="navigation-link p-3" exact to="/friends">
+                  <NavItem>My Friends</NavItem>
+                </RouterLink>
                 <RouterLink className="navigation-link p-3" exact to="/movies">
                   <NavItem>Search For Movies</NavItem>
                 </RouterLink>
