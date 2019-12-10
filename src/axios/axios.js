@@ -36,7 +36,7 @@ const getMoviePage = async (token, title, type, year, page) => {
 };
 
 const getMovie = async (token, id) => {
-  return await client.get("/api/movie/" + id, {
+  return await client.get("/api/movie/" + id + "?plot=full", {
     headers: {
       'Content-Type': "application/json",
       Authorization: "Bearer " + token,

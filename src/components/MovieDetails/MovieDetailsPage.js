@@ -35,9 +35,9 @@ class MovieDetailsPage extends Component {
   render() {
     if (this.state.redirect) return <Redirect to={this.state.redirect}/>;
 
-    return <div>
-      <div className="row">
-        <div className="col-6">
+    return <div className="mt-5">
+      <div className="row m-auto">
+        <div className="col-8">
           <h1>{this.state.movie.title}</h1>
           <div className="row mt-4">
             <div className="col-6">
@@ -59,13 +59,13 @@ class MovieDetailsPage extends Component {
               <div className="p-1"><b> Box Office:</b> {this.state.movie.boxOffice}</div>
             </div>
           </div>
+          <div className="row mt-4">
+            <div className="col-12">
+              <p>{this.state.movie.plot}</p>
+            </div>
+          </div>
         </div>
-        <div className="col-6"><img src={this.state.movie.smallPoster} alt="movie poster" className="img-fluid"/></div>
-      </div>
-      <div className="row mt-4">
-        <div className="col-12">
-          <p>{this.state.movie.plot}</p>
-        </div>
+        <div className="col-4"><img src={this.state.movie.smallPoster} alt="movie poster" className="float-right img-fluid"/></div>
       </div>
     </div>
   }
