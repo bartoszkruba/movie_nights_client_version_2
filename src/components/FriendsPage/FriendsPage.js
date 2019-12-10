@@ -74,7 +74,7 @@ class FriendsPage extends Component {
       this.setState({redirect: "/"})
     }
     try {
-      const response = await axios.getCreatedFriendRequests(token);
+      const response = await axios.getPendingFriendRequests(token);
       this.setState({pendingFriendRequests: response.data})
     } catch (e) {
       this.setState({redirect: "/"})
@@ -99,6 +99,18 @@ class FriendsPage extends Component {
       </div>
       <div className="col-6 text-right">
         <Button color="danger" size="sm">Cancel</Button>
+      </div>
+    </div>);
+  };
+
+  renderPendingRequests = () => {
+    return this.state.pendingFriendRequests.map(request => <div className="row p-2">
+      <div className="col-6">
+        {request.senderEmail}, {request.senderName}
+      </div>
+      <div className="col-6 text-right">
+        <Button color="danger" size="sm">Discard</Button>
+        <Button color="success" size="sm" className="ml-2">Accept</Button>
       </div>
     </div>);
   };
@@ -136,17 +148,18 @@ class FriendsPage extends Component {
             <h2 className="m-auto text-center">Friend Requests</h2>
           </div>
         </div>
-        <div className="row">
+        {this.state.createdFriendRequests.length > 0 && <div className="row mt-3">
           <div className="col-12">
             <h3>Created</h3>
           </div>
-        </div>
+        </div>}
         {this.renderCreatedRequests()}
-        <div className="row">
+        {this.state.pendingFriendRequests.length > 0 && <div className="row mt-3">
           <div className="col-12">
             <h3>Pending</h3>
           </div>
-        </div>
+        </div>}
+        {this.renderPendingRequests()}
       </div>}
     </div>
   }
