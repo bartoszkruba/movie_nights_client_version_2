@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, withRouter} from "react-router-dom";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -52,7 +52,7 @@ class App extends Component {
 
     return <Router>
       <Navigation user={this.state.user} setUser={this.setUser} redirect={this.redirect}/>
-      <div className="container">
+      <div className="container mt-3">
         <Route exact path="/" component={index}/>
         <Route exact path="/login" component={login}/>
         <Route exact path="/oauth2/redirect" component={oauth2}/>

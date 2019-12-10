@@ -5,6 +5,7 @@ import axios from '../../axios/axios'
 
 class OAuth2RedirectHandler extends Component {
   getUrlParameter(name) {
+    // eslint-disable-next-line
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
 

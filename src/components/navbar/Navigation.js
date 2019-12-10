@@ -1,7 +1,6 @@
 import React, {Component, Fragment} from "react";
 import {NavLink as RouterLink} from "react-router-dom";
 import {
-  NavLink,
   Navbar,
   Collapse,
   Nav,
@@ -36,13 +35,11 @@ class Navigation extends Component {
 
   render() {
 
-    // return <p>navbar</p>
-
     return (
       <div>
-        <Navbar light expand="md">
+        <Navbar color="light" light expand="md">
           <RouterLink exact to="/">
-            <span className="Nav-Item">
+            <span className="Nav-Item navigation-link p-3">
               <b>Movie Nights</b>
             </span>
           </RouterLink>
@@ -54,15 +51,15 @@ class Navigation extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               {this.props.user && <Fragment>
-                <RouterLink exact to="/movies">
+                <RouterLink className="navigation-link p-3" exact to="/movies">
                   <NavItem>Search For Movies</NavItem>
                 </RouterLink>
-                <div onClick={this.logout}>
+                <div className="navigation-link p-3" onClick={this.logout}>
                   <span>Logout</span>
                 </div>
               </Fragment>}
               {this.props.user == null && <Fragment>
-                <RouterLink exact to="/login">
+                <RouterLink className="navigation-link p-3" exact to="/login">
                   <NavItem>Login</NavItem>
                 </RouterLink>
               </Fragment>}

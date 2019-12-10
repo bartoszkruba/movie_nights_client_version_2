@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Form, FormGroup, Label, Input, FormText, Col} from 'reactstrap';
-import Pagination from "reactstrap/es/Pagination";
+import {Button, FormGroup, Label, Input, Col} from 'reactstrap';
 
 class SearchBar extends Component {
 
@@ -18,7 +17,8 @@ class SearchBar extends Component {
   };
 
   handleSearch = e => {
-    this.props.onSearch(this.state.title, this.state.type, this.state.year, 1)
+    if (this.state.title.trim())
+      this.props.onSearch(this.state.title, this.state.type, this.state.year, 1)
   };
 
   render() {
@@ -47,7 +47,7 @@ class SearchBar extends Component {
         </FormGroup>
         <FormGroup className="m-auto pt-3" row>
           <Col sm={{size: 10, offset: 2}}>
-            <Button onClick={this.handleSearch}>Search</Button>
+            <Button color="primary" onClick={this.handleSearch}>Search</Button>
           </Col>
         </FormGroup>
       </div>

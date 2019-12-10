@@ -2,3 +2,22 @@
     cursor: pointer;
     background-color: gainsboro;
 }
+
+.navigation-link {
+    color: darkblue !important;
+}
+
+.navigation-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.login-box {
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+}
+
+.login-box:hover{
+    cursor: pointer;
+    background-color: gainsboro;
+}

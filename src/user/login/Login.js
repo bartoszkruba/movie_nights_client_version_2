@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {GOOGLE_AUTH_URL, ACCESS_TOKEN} from "../../constants/constants";
-import {Link, Redirect} from 'react-router-dom'
+import {GOOGLE_AUTH_URL} from "../../constants/constants";
+import {Redirect} from 'react-router-dom'
 
 class Login extends Component {
 
@@ -16,7 +16,7 @@ class Login extends Component {
 
     return <div className="row">
       <div className="col-12 m-auto">
-        <h1 className="text-center">Login to Movie Nights</h1>
+        <h1 className="text-center mb-5">Login to Movie Nights</h1>
         <SocialLogin/>
       </div>
     </div>
@@ -27,9 +27,11 @@ class Login extends Component {
 class SocialLogin extends Component {
   render() {
     return (
-      <span className="m-auto text-center">
-        <a className="text-center" href={GOOGLE_AUTH_URL}>Log in with Google</a>
-      </span>
+      <a href={GOOGLE_AUTH_URL}>
+        <div className="m-auto col-4 text-center p-5 login-box">
+          <span className="text-center">Log in with Google</span>
+        </div>
+      </a>
     )
   }
 }
