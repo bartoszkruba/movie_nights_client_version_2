@@ -31,7 +31,7 @@ class FriendsPage extends Component {
       this.getCreatedFriendRequests()
     } catch (e) {
       console.log(e);
-      // this.setState({redirect: "/"});
+      this.setState({redirect: "/"});
     }
   };
 
@@ -82,35 +82,66 @@ class FriendsPage extends Component {
   };
 
   renderFriends = () => {
-    return this.state.friends.map(friend => <div className="row">
+    return this.state.friends.map(friend => <div className="row" key={friend.id}>
       <div className="col-6">
-        <h3>{friend.name}</h3>
+        <p>{friend.name}, {friend.email}</p>
       </div>
-      <div className="col-6">
-        <h3>{friend.email}</h3>
+      <div className="col-6 text-right">
+        <Button color="danger" size="sm">Delete</Button>
       </div>
     </div>)
   };
 
+  acceptFriendRequest = async (id) => {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    if (!token) {
+      this.setState({redirect: "/"})
+    }
+    try {
+      await axios.acceptFriendRequest(token, id);
+      this.getCreatedFriendRequests();
+      this.getPendingFriendRequests();
+      this.getFriends();
+    } catch (e) {
+      this.setState({redirect: "/"})
+    }
+  };
+
+  discardFriendRequest = async (id) => {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    if (!token) {
+      this.setState({redirect: "/"})
+    }
+    try {
+      await axios.discardFriendRequest(token, id);
+      this.getCreatedFriendRequests();
+      this.getPendingFriendRequests();
+      this.getFriends();
+    } catch (e) {
+      this.setState({redirect: "/"})
+    }
+  };
+
   renderCreatedRequests = () => {
-    return this.state.createdFriendRequests.map(request => <div className="row p-2">
+    return this.state.createdFriendRequests.map(request => <div className="row p-2" key={request.id}>
       <div className="col-6">
         {request.receiverEmail}, {request.receiverName}
       </div>
       <div className="col-6 text-right">
-        <Button color="danger" size="sm">Cancel</Button>
+        <Button color="danger" size="sm" onClick={() => this.discardFriendRequest(request.id)}>Cancel</Button>
       </div>
     </div>);
   };
 
   renderPendingRequests = () => {
-    return this.state.pendingFriendRequests.map(request => <div className="row p-2">
+    return this.state.pendingFriendRequests.map(request => <div className="row p-2" key={request.id}>
       <div className="col-6">
         {request.senderEmail}, {request.senderName}
       </div>
       <div className="col-6 text-right">
-        <Button color="danger" size="sm">Discard</Button>
-        <Button color="success" size="sm" className="ml-2">Accept</Button>
+        <Button color="danger" size="sm" onClick={() => this.discardFriendRequest(request.id)}>Discard</Button>
+        <Button color="success" size="sm" className="ml-2"
+                onClick={() => this.acceptFriendRequest(request.id)}>Accept</Button>
       </div>
     </div>);
   };
@@ -132,8 +163,8 @@ class FriendsPage extends Component {
         <Col sm={2}><Button color="primary" onClick={this.sendFriendRequest}>Send Request</Button></Col>
       </div>
       {this.state.friends.length > 0 && <div>
-        <hr/>
-        <div className="row mt-4">
+        <hr className="mt-5"/>
+        <div className="row mt-5">
           <div className="col-12">
             <h2 className="m-auto text-center">My Friends</h2>
           </div>
