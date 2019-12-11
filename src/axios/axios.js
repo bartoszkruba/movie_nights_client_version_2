@@ -96,8 +96,17 @@ const acceptFriendRequest = async (token, id) => {
 };
 
 const discardFriendRequest = async (token, id) => {
-
   return await client.delete("/api/user/me/friendRequest/" + id, {
+    headers: {
+      'Content-Type': "application/json",
+      Authorization: "Bearer " + token,
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+};
+
+const removeFriend = async (token, id) => {
+  return await client.delete("/api/user/me/friend" + id, {
     headers: {
       'Content-Type': "application/json",
       Authorization: "Bearer " + token,
@@ -115,5 +124,6 @@ export default {
   getPendingFriendRequests,
   sendFriendRequest,
   acceptFriendRequest,
-  discardFriendRequest
+  discardFriendRequest,
+  removeFriend
 }

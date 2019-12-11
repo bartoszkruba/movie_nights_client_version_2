@@ -81,13 +81,28 @@ class FriendsPage extends Component {
     }
   };
 
+  removeFriend = async (id) => {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    if (!token) {
+      this.setState({redirect: "/"});
+    }
+    try {
+      await axios.removeFriend(token, id);
+      this.getCreatedFriendRequests();
+      this.getPendingFriendRequests();
+      this.getFriends();
+    } catch (e) {
+      this.setState({redirect: "/"})
+    }
+  };
+
   renderFriends = () => {
     return this.state.friends.map(friend => <div className="row" key={friend.id}>
       <div className="col-6">
         <p>{friend.name}, {friend.email}</p>
       </div>
       <div className="col-6 text-right">
-        <Button color="danger" size="sm">Delete</Button>
+        <Button color="danger" size="sm" onClick={() => this.removeFriend(friend.id)}>Delete</Button>
       </div>
     </div>)
   };
