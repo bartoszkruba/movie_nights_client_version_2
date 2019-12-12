@@ -15,10 +15,12 @@ class MovieSearchComponent extends Component {
       type: "movie",
       year: ""
     },
-    loading: false
+    loading: false,
+    error: ""
   };
 
   handleSearch = async (title, type, year, page) => {
+    this.setState({error: ""});
     const token = localStorage.getItem(ACCESS_TOKEN);
     this.setState({loading: true});
     try {
@@ -34,7 +36,11 @@ class MovieSearchComponent extends Component {
         }
       })
     } catch (e) {
-      this.props.redirect("/");
+      if (e.response.status === 401 || e.response.status === 403) {
+        this.props.redirect("/");
+      } else {
+        this.setState({error: e.response.data.error})
+      }
     }
     this.setState({loading: false});
   };
@@ -73,7 +79,7 @@ class MovieSearchComponent extends Component {
   render() {
     return <div className="row">
       <div className="col-12 m-auto">
-        <SearchBar onSearch={this.handleSearch}/>
+        <SearchBar onSearch={this.handleSearch} error={this.state.error}/>
         {this.state.totalMovies > 0 && this.renderPagination()}
         {!this.state.loading && <MovieList movieClicked={this.props.movieClicked} movies={this.state.movies}/>}
         {this.state.loading && <h3 className="text-center">Loading...</h3>}

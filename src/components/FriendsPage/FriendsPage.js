@@ -34,12 +34,10 @@ class FriendsPage extends Component {
       this.setState({email: ""});
       this.getCreatedFriendRequests()
     } catch (e) {
-      console.log(e.response);
       if (e.response.status === 401 || e.response.status === 403) {
         this.setState({redirect: "/"});
       } else {
         this.setState({error: e.response.data.error});
-        console.log(e.response.data.error);
       }
     }
   };

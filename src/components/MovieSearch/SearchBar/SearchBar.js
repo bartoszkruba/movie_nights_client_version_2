@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, FormGroup, Label, Input, Col} from 'reactstrap';
+import {Button, FormGroup, Label, Input, Col, Alert} from 'reactstrap';
 
 class SearchBar extends Component {
 
@@ -7,7 +7,6 @@ class SearchBar extends Component {
     title: "",
     type: "movie",
     year: "",
-    movies: [],
   };
 
   handleChange = e => {
@@ -17,12 +16,15 @@ class SearchBar extends Component {
   };
 
   handleSearch = e => {
-    if (this.state.title.trim())
-      this.props.onSearch(this.state.title, this.state.type, this.state.year, 1)
+    this.props.onSearch(this.state.title, this.state.type, this.state.year, 1);
   };
+
 
   render() {
     return (<div>
+        {this.props.error && <div className="col-12 mt-4">
+          <Alert color="danger">{this.props.error}</Alert>
+        </div>}
         <FormGroup className="m-auto" row>
           <Label sm={2}>Title</Label>
           <Col sm={10}>
