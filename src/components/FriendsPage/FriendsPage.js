@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Redirect} from "react-router-dom";
 import axios from "../../axios/axios";
 import {ACCESS_TOKEN} from "../../constants/constants";
-import {Button, Col, Input, Label} from "reactstrap";
+import {Alert, Button, Col, Input, Label} from "reactstrap";
 
 class FriendsPage extends Component {
 
@@ -11,7 +11,8 @@ class FriendsPage extends Component {
     friends: [],
     createdFriendRequests: [],
     pendingFriendRequests: [],
-    email: ""
+    email: "",
+    error: ""
   };
 
   componentDidMount() {
@@ -21,6 +22,7 @@ class FriendsPage extends Component {
   }
 
   sendFriendRequest = async () => {
+    this.setState({error: ""});
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (!token) {
       this.setState({redirect: "/"});
@@ -29,10 +31,16 @@ class FriendsPage extends Component {
 
     try {
       await axios.sendFriendRequest(token, this.state.email);
+      this.setState({email: ""});
       this.getCreatedFriendRequests()
     } catch (e) {
-      console.log(e);
-      this.setState({redirect: "/"});
+      console.log(e.response);
+      if (e.response.status === 401 || e.response.status === 403) {
+        this.setState({redirect: "/"});
+      } else {
+        this.setState({error: e.response.data.error});
+        console.log(e.response.data.error);
+      }
     }
   };
 
@@ -175,6 +183,13 @@ class FriendsPage extends Component {
           <h2 className="m-auto text-center">Add Friend</h2>
         </div>
       </div>
+      {this.state.error && <div className="row mt-4">
+        <div className="col-12">
+          <Alert color="danger">
+            {this.state.error}
+          </Alert>
+        </div>
+      </div>}
       <div className="row mt-4">
         <Label sm={1}>Email:</Label>
         <Col sm={9}>

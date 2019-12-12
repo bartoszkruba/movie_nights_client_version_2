@@ -106,17 +106,7 @@ const discardFriendRequest = async (token, id) => {
 };
 
 const removeFriend = async (token, id) => {
-  return await client.delete("/api/user/me/friend" + id, {
-    headers: {
-      'Content-Type': "application/json",
-      Authorization: "Bearer " + token,
-      "Access-Control-Allow-Origin": "*"
-    }
-  })
-};
-
-const test = async (token) => {
-  client.get("/api/calendar/test", {
+  return await client.delete("/api/user/me/friend/" + id, {
     headers: {
       'Content-Type': "application/json",
       Authorization: "Bearer " + token,
@@ -135,6 +125,5 @@ export default {
   sendFriendRequest,
   acceptFriendRequest,
   discardFriendRequest,
-  removeFriend,
-  test
+  removeFriend
 }
