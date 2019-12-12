@@ -8,6 +8,7 @@ import Index from './components/Index/Index';
 import MovieSearchPage from "./components/MovieSearch/MovieSearchPage/MovieSearchPage";
 import MovieDetailsPage from "./components/MovieDetails/MovieDetailsPage";
 import FriendsPage from "./components/FriendsPage/FriendsPage"
+import CalendarPage from "./components/CalendarPage/CalendarPage";
 import OAuth2RedirectHandler from "./user/oauth2/OAuth2RedirectHandler";
 import {ACCESS_TOKEN} from "./constants/constants";
 import axios from './axios/axios'
@@ -53,6 +54,7 @@ class App extends Component {
     const index = () => <Index setUser={this.setUser} user={this.state.user}/>;
     const movieSearchPage = () => <MovieSearchPage setUser={this.setUser} redirect={this.redirect}/>;
     const friendsPage = () => <FriendsPage/>;
+    const calendarPage = () => <CalendarPage/>;
 
     return <Router>
       <Navigation user={this.state.user} setUser={this.setUser} redirect={this.redirect}/>
@@ -63,6 +65,7 @@ class App extends Component {
         <Route exact path="/movies" component={movieSearchPage}/>
         <Route path="/movie/:id" render={props => <MovieDetailsPage {...props} setUser={this.setUser}/>}/>
         <Route exact path="/friends" component={friendsPage}/>
+        <Route exact path="/calendar" component={calendarPage}/>
       </div>
     </Router>
   }

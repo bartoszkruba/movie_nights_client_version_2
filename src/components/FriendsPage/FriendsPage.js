@@ -24,6 +24,7 @@ class FriendsPage extends Component {
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (!token) {
       this.setState({redirect: "/"});
+      return
     }
 
     try {
@@ -45,6 +46,7 @@ class FriendsPage extends Component {
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (!token) {
       this.setState({redirect: "/"});
+      return
     }
 
     try {
@@ -58,7 +60,8 @@ class FriendsPage extends Component {
   getCreatedFriendRequests = async () => {
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (!token) {
-      this.setState({redirect: "/"})
+      this.setState({redirect: "/"});
+      return
     }
     try {
       const response = await axios.getCreatedFriendRequests(token);
@@ -72,6 +75,7 @@ class FriendsPage extends Component {
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (!token) {
       this.setState({redirect: "/"})
+      return
     }
     try {
       const response = await axios.getPendingFriendRequests(token);
@@ -85,6 +89,7 @@ class FriendsPage extends Component {
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (!token) {
       this.setState({redirect: "/"});
+      return
     }
     try {
       await axios.removeFriend(token, id);

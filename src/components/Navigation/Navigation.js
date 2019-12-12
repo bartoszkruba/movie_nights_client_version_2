@@ -48,6 +48,9 @@ class Navigation extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               {this.props.user && <Fragment>
+                <RouterLink className="navigation-link p-3" exact to="/calendar">
+                  <NavItem>Calendar</NavItem>
+                </RouterLink>
                 <RouterLink className="navigation-link p-3" exact to="/friends">
                   <NavItem>My Friends</NavItem>
                 </RouterLink>

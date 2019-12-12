@@ -115,6 +115,16 @@ const removeFriend = async (token, id) => {
   })
 };
 
+const test = async (token) => {
+  client.get("/api/calendar/test", {
+    headers: {
+      'Content-Type': "application/json",
+      Authorization: "Bearer " + token,
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+};
+
 export default {
   getUser,
   getMoviePage,
@@ -125,5 +135,6 @@ export default {
   sendFriendRequest,
   acceptFriendRequest,
   discardFriendRequest,
-  removeFriend
+  removeFriend,
+  test
 }

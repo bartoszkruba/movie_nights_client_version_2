@@ -46,8 +46,20 @@ class MovieSearchComponent extends Component {
   renderPagination() {
     if (this.state.totalMovies < 1) return null;
 
+    const maxPage = Math.ceil(((this.state.totalMovies === 0) ? 1 : this.state.totalMovies) / 10);
     const pages = [];
-    for (let i = 1; i <= this.state.totalMovies / 10 + 1; i++) {
+    let min = this.state.currentPage - 3;
+    let max = (this.state.currentPage + 3);
+    if (min < 0) {
+      max -= min - 1;
+      min = 0;
+    }
+
+    if (this.state.currentPage === 3) max++;
+
+    for (let i = min; i <= max; i++) {
+      if (i < 1 || i > maxPage) continue;
+
       pages.push(<PaginationItem key={i} active={i === this.state.currentPage} onClick={() => this.switchPage(i)}>
         <PaginationLink>
           {i}
