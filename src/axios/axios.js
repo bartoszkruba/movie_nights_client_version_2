@@ -21,7 +21,7 @@ const getMoviePage = async (token, title, type, year, page) => {
   queryParams += "page=" + page;
 
   queryParams += "&title=" + encodeURI(title);
-  if(type) queryParams += "&type=" + encodeURI(type);
+  if (type) queryParams += "&type=" + encodeURI(type);
   if (year) queryParams += "&year=" + encodeURI(year);
   return await client.get("/api/movie/many" + queryParams, {
     headers: {
@@ -113,6 +113,16 @@ const removeFriend = async (token, id) => {
   })
 };
 
+const getMovieWatchings = async (token) => {
+  return await client.get("/api/calendar/me/movieWatching", {
+    headers: {
+      'Content-Type': "application/json",
+      Authorization: "Bearer " + token,
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+};
+
 export default {
   getUser,
   getMoviePage,
@@ -123,5 +133,6 @@ export default {
   sendFriendRequest,
   acceptFriendRequest,
   discardFriendRequest,
-  removeFriend
+  removeFriend,
+  getMovieWatchings
 }

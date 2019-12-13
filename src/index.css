@@ -17,7 +17,27 @@
     box-shadow: 1px 1px 1px black;
 }
 
-.login-box:hover{
+.login-box:hover {
+    cursor: pointer;
+    background-color: gainsboro;
+}
+
+.movie-watching:hover {
+    cursor: pointer;
+    background-color: gainsboro;
+}
+
+.movie-watching {
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+}
+
+.friend-box {
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+}
+
+.friend-box:hover {
     cursor: pointer;
     background-color: gainsboro;
 }

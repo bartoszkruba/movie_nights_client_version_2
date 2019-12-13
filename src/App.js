@@ -9,6 +9,8 @@ import MovieSearchPage from "./components/MovieSearch/MovieSearchPage/MovieSearc
 import MovieDetailsPage from "./components/MovieDetails/MovieDetailsPage";
 import FriendsPage from "./components/FriendsPage/FriendsPage"
 import InfoPage from './components/InfoPage/InfoPage'
+import MyEventsPage from './components/MyEventsPage/MyEventsPage'
+import CreateMovieEventPage from './components/CreateMovieEventPage/CreateMovieEventPage'
 import OAuth2RedirectHandler from "./user/oauth2/OAuth2RedirectHandler";
 import {ACCESS_TOKEN} from "./constants/constants";
 import axios from './axios/axios'
@@ -54,7 +56,9 @@ class App extends Component {
     const index = () => <Index setUser={this.setUser} user={this.state.user}/>;
     const movieSearchPage = () => <MovieSearchPage setUser={this.setUser} redirect={this.redirect}/>;
     const friendsPage = () => <FriendsPage/>;
-    const infoPage = () => <InfoPage/>
+    const infoPage = () => <InfoPage/>;
+    const myEventsPage = () => <MyEventsPage/>;
+    const createNewEventPage = () => <CreateMovieEventPage/>;
 
     return <Router>
       <Navigation user={this.state.user} setUser={this.setUser} redirect={this.redirect}/>
@@ -66,6 +70,8 @@ class App extends Component {
         <Route path="/movie/:id" render={props => <MovieDetailsPage {...props} setUser={this.setUser}/>}/>
         <Route exact path="/friends" component={friendsPage}/>
         <Route exact path="/info" component={infoPage}/>
+        <Route exact path="/my-events" component={myEventsPage}/>
+        <Route exact path="/create-new-event" component={createNewEventPage}/>
       </div>
     </Router>
   }
