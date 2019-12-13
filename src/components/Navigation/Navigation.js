@@ -47,9 +47,15 @@ class Navigation extends Component {
           <NavbarToggler onClick={this.toggle}/>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              <RouterLink className="navigation-link p-3" exact to="/info">
+                <NavItem>Info</NavItem>
+              </RouterLink>
               {this.props.user && <Fragment>
-                <RouterLink className="navigation-link p-3" exact to="/calendar">
-                  <NavItem>Calendar</NavItem>
+                <RouterLink className="navigation-link p-3" exact to="/">
+                  <NavItem>Create New Event</NavItem>
+                </RouterLink>
+                <RouterLink className="navigation-link p-3" exact to="/">
+                  <NavItem>My Events</NavItem>
                 </RouterLink>
                 <RouterLink className="navigation-link p-3" exact to="/friends">
                   <NavItem>My Friends</NavItem>
