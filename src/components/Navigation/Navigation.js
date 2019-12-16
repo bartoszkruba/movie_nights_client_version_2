@@ -63,9 +63,9 @@ class Navigation extends Component {
                 <RouterLink className="navigation-link p-3" exact to="/create-new-event">
                   <NavItem>Create New Event</NavItem>
                 </RouterLink>
-                <RouterLink className="navigation-link p-3" exact to="/my-events">
-                  <NavItem>My Events</NavItem>
-                </RouterLink>
+                {/*<RouterLink className="navigation-link p-3" exact to="/my-events">*/}
+                {/*  <NavItem>My Events</NavItem>*/}
+                {/*</RouterLink>*/}
                 <RouterLink className="navigation-link p-3" exact to="/friends">
                   <NavItem>My Friends</NavItem>
                 </RouterLink>
