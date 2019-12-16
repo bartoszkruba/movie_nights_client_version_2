@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button} from "reactstrap";
+import {Button, Input, Label} from "reactstrap";
 import MovieSearchComponent from "../MovieSearch/MovieSearchComponent/MovieSearchComponent";
 import {ACCESS_TOKEN} from "../../constants/constants";
 import TimePicker from "rc-time-picker";
@@ -16,7 +16,16 @@ class CreateMovieEventPage extends Component {
     showMovieSearch: false,
     choosenFriends: [],
     timePickerValue: null,
-    loading: false
+    loading: false,
+    weekdays: {
+      monday: true,
+      tuesday: true,
+      wednesday: true,
+      thursday: true,
+      friday: true,
+      saturday: true,
+      sunday: true
+    }
   };
 
   chooseMovieButtonClicked = () => {
@@ -102,10 +111,15 @@ class CreateMovieEventPage extends Component {
       this.setState({redirect: "/"});
     }
 
+    const startTime = this.state.timePickerValue.hour() * 60 + this.state.timePickerValue.minutes();
+    const weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+    const queryDays = [];
+
+    for (let day of weekdays) if (this.state.weekdays[day]) queryDays.push(day)
+
     try {
-      const startTime = this.state.timePickerValue.hour() * 60 + this.state.timePickerValue.minutes();
       const response = await axios.getPossibleTimes(token, this.state.choosenFriends, this.state.choosenMovie.imdbID,
-        startTime);
+        startTime, queryDays);
       this.setState({suggestedTimes: response.data, loading: false})
     } catch (e) {
       console.log(e);
@@ -134,13 +148,19 @@ class CreateMovieEventPage extends Component {
     }
 
     try {
-      const response = await axios.createMovieWatching(token, this.state.choosenFriends, this.state.choosenMovie.imdbID,
+      await axios.createMovieWatching(token, this.state.choosenFriends, this.state.choosenMovie.imdbID,
         this.state.chosenTime * 1000);
       this.setState({loading: false, stage: "finished"})
     } catch (e) {
       console.log(e);
       this.setState({redirect: "/"});
     }
+  };
+
+  handleCheckbox = e => {
+    const weekdays = {...this.state.weekdays};
+    weekdays[e.target.name] = !weekdays[e.target.name];
+    this.setState({weekdays});
   };
 
   renderPage = () => {
@@ -199,6 +219,59 @@ class CreateMovieEventPage extends Component {
         <div className="row mt-3">
           <div className="col-12">
             <h3 className="text-center">Chose Time</h3>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-3">
+            <Label check>
+              <Input name="monday" type="checkbox" checked={this.state.weekdays.monday}
+                     onChange={this.handleCheckbox}/>{' '}
+              Monday
+            </Label>
+          </div>
+          <div className="col-3">
+            <Label check>
+              <Input name="tuesday" type="checkbox" checked={this.state.weekdays.tuesday}
+                     onChange={this.handleCheckbox}/>{' '}
+              Tuesday
+            </Label>
+          </div>
+          <div className="col-3">
+            <Label check>
+              <Input name="wednesday" type="checkbox" checked={this.state.weekdays.wednesday}
+                     onChange={this.handleCheckbox}/>{' '}
+              Wednesday
+            </Label>
+          </div>
+          <div className="col-3">
+            <Label check>
+              <Input name="thursday" type="checkbox" checked={this.state.weekdays.thursday}
+                     onChange={this.handleCheckbox}/>{' '}
+              Thursday
+            </Label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-3">
+            <Label check>
+              <Input name="friday" type="checkbox" checked={this.state.weekdays.friday}
+                     onChange={this.handleCheckbox}/>{' '}
+              Friday
+            </Label>
+          </div>
+          <div className="col-3">
+            <Label check>
+              <Input name="saturday" type="checkbox" checked={this.state.weekdays.saturday}
+                     onChange={this.handleCheckbox}/>{' '}
+              Saturday
+            </Label>
+          </div>
+          <div className="col-3">
+            <Label check>
+              <Input name="sunday" type="checkbox" checked={this.state.weekdays.sunday}
+                     onChange={this.handleCheckbox}/>{' '}
+              Sunday
+            </Label>
           </div>
         </div>
         <div className="row mt-3">
@@ -268,7 +341,7 @@ class CreateMovieEventPage extends Component {
         </div>
         <div className="row mt-4">
           <div className="col-12 text-center">
-            <h2>Your booking is finished</h2>
+            <h2>Created Event</h2>
           </div>
         </div>
       </div>

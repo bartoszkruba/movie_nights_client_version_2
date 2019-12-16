@@ -123,7 +123,7 @@ const getMovieWatchings = async (token) => {
   })
 };
 
-const getPossibleTimes = async (token, attendees, movieId, startTime) => {
+const getPossibleTimes = async (token, attendees, movieId, startTime, weekdays) => {
   let query = "?movieId=" + movieId + "&startTime=" + startTime + "&attendees=";
   for (let attendee of attendees) {
     query += attendee.id;
@@ -131,6 +131,18 @@ const getPossibleTimes = async (token, attendees, movieId, startTime) => {
       query += ",";
     }
   }
+
+  if (weekdays.length > 0) {
+    query += "&weekdays="
+  }
+
+  for (let day of weekdays) {
+    query += day;
+    if (weekdays.indexOf(day) !== weekdays.length - 1) {
+      query += ","
+    }
+  }
+
   return await client.get("/api/calendar/me/movieWatching/possibleTimes" + query, {
     headers: {
       'Content-Type': "application/json",
