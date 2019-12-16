@@ -123,6 +123,40 @@ const getMovieWatchings = async (token) => {
   })
 };
 
+const getPossibleTimes = async (token, attendees, movieId, startTime) => {
+  let query = "?movieId=" + movieId + "&startTime=" + startTime + "&attendees=";
+  for (let attendee of attendees) {
+    query += attendee.id;
+    if (attendees.indexOf(attendee) !== attendees.length - 1) {
+      query += ",";
+    }
+  }
+  return await client.get("/api/calendar/me/movieWatching/possibleTimes" + query, {
+    headers: {
+      'Content-Type': "application/json",
+      Authorization: "Bearer " + token,
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+};
+
+const createMovieWatching = async (token, attendees, movieId, startTime) => {
+  let query = "?movieId=" + movieId + "&startTime=" + startTime + "&attendees=";
+  for (let attendee of attendees) {
+    query += attendee.id;
+    if (attendees.indexOf(attendee) !== attendees.length - 1) {
+      query += ",";
+    }
+  }
+  return await client.post("/api/calendar/me/movieWatching" + query, {}, {
+    headers: {
+      'Content-Type': "application/json",
+      Authorization: "Bearer " + token,
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+};
+
 export default {
   getUser,
   getMoviePage,
@@ -134,5 +168,7 @@ export default {
   acceptFriendRequest,
   discardFriendRequest,
   removeFriend,
-  getMovieWatchings
+  getMovieWatchings,
+  getPossibleTimes,
+  createMovieWatching
 }
