@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from "react";
-import {NavLink as RouterLink} from "react-router-dom";
+import {NavLink as RouterLink, Redirect} from "react-router-dom";
 import {
   Navbar,
   Collapse,
@@ -7,6 +7,7 @@ import {
   NavbarToggler,
   NavItem,
 } from "reactstrap";
+import {ACCESS_TOKEN} from "../../constants/constants";
 
 
 class Navigation extends Component {
@@ -15,8 +16,13 @@ class Navigation extends Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      redirect: ""
     };
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.redirect) this.setState({redirect: ""})
   }
 
   toggle = () => {
@@ -27,10 +33,13 @@ class Navigation extends Component {
 
   logout = () => {
     this.props.setUser(null);
-    this.props.redirect("/")
+    localStorage.removeItem(ACCESS_TOKEN);
+    this.setState({redirect: "/"})
   };
 
   render() {
+
+    if (this.state.redirect) return <Redirect to={this.state.redirect}/>;
 
     return (
       <div>
