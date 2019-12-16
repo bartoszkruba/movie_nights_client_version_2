@@ -115,7 +115,7 @@ class CreateMovieEventPage extends Component {
     const weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
     const queryDays = [];
 
-    for (let day of weekdays) if (this.state.weekdays[day]) queryDays.push(day)
+    for (let day of weekdays) if (this.state.weekdays[day]) queryDays.push(day);
 
     try {
       const response = await axios.getPossibleTimes(token, this.state.choosenFriends, this.state.choosenMovie.imdbID,
@@ -291,7 +291,7 @@ class CreateMovieEventPage extends Component {
             <h5 className="text-center">Loading...</h5>
           </div>
         </div>}
-        {this.state.suggestedTimes && this.renderSuggestedTimes()}
+        {this.state.suggestedTimes && !this.state.loading && this.renderSuggestedTimes()}
       </div>
     }
     if (this.state.stage === "finish") {
