@@ -1,13 +1,16 @@
 .movie-item {
-    background-color: #212121;
+    background-color: #607D8B;
+    /*color: #212121;*/
     color: #FFFFFF;
-    box-shadow: 2px 2px 2px #212121;
+    /*box-shadow: 2px 2px 2px #757575;*/
 }
 
 .movie-item:hover {
-    transition: background-color 250ms linear, color 250ms linear;
+    /*transition: background-color 250ms linear, color 250ms linear;*/
     cursor: pointer;
-    color: #BDBDBD;
+    background-color: #607D8B;
+    transition: box-shadow 250ms linear, width 250ms linear, background-image 250ms linear;
+    box-shadow: 5px 5px 10px 3px #455A64;
 }
 
 .navigation-link {
@@ -21,21 +24,32 @@
 }
 
 .login-box {
-    box-shadow: 1px 1px 1px #212121;
-    /*border: 1px solid #212121;*/
-    color: #212121;
-    background-color: #607D8B;
+    /*background-color: #212121;*/
+    color: #FFFFFF;
 }
 
 .login-box:hover {
     cursor: pointer;
-    background-color: #212121;
+    /*background-color: #212121;*/
     color: #FFFFFF;
-    transition: background-color 250ms linear, color 250ms linear;
+    /*transition: box-shadow, 250ms linear;*/
+    /*box-shadow: 3px 3px 10px 3px #455A64;*/
+}
+
+.login-box-link {
+    color: #FFFFFF;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    background-color: #212121;
 }
 
 .login-box-link:hover {
     text-decoration: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    background-color: #212121;
+    transition: box-shadow, 250ms linear;
+    box-shadow: 3px 3px 10px 3px #455A64;
 }
 
 .movie-watching:hover {
@@ -85,7 +99,7 @@
     background-color: #212121 !important;
     color: #FFFFFF;
     border-color: #212121 !important;
-    box-shadow: 1px 1px 1px #212121;
+    /*box-shadow: 1px 1px 1px #212121;*/
 }
 
 .btn-primary:hover {
@@ -94,9 +108,40 @@
     border-color: #009688 !important;
 }
 
-.main-box{
-    background-color: rgba(69, 90, 100, 0.95);
+.main-box {
+    background-color: rgba(69, 90, 100, 0.75);
     color: #FFFFFF;
     box-shadow: 2px 2px 2px #3e4d5a;
 }
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    color: #455A64;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+button.page-link {
+    background-color: #212121;
+    border: 1px solid #555;
+    color: white;
+}
+
+li.active > button.page-link {
+    background-color: #009688 !important;
+    border-color: #009688 !important;
+}
+
+.pagination > li > a {
+    background-color: white;
+    color: #009688;
+}
+
+li.active-link button.page-link {
+    background-color: #009688 !important;
+    border-color: #009688 !important;
+}
+
 
