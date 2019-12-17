@@ -1,14 +1,13 @@
 .movie-item {
+    background-color: #212121;
     color: #FFFFFF;
-    background-color: #455A64;
     box-shadow: 2px 2px 2px #212121;
 }
 
 .movie-item:hover {
     transition: background-color 250ms linear, color 250ms linear;
     cursor: pointer;
-    /*color: #FFC107;*/
-    background-color: #212121;
+    color: #BDBDBD;
 }
 
 .navigation-link {
@@ -24,14 +23,14 @@
 .login-box {
     box-shadow: 1px 1px 1px #212121;
     /*border: 1px solid #212121;*/
-    color: #FFFFFF;
-    background-color: #455A64;
+    color: #212121;
+    background-color: #607D8B;
 }
 
 .login-box:hover {
     cursor: pointer;
-    /*color: #FFC107;*/
     background-color: #212121;
+    color: #FFFFFF;
     transition: background-color 250ms linear, color 250ms linear;
 }
 
@@ -46,19 +45,20 @@
 
 .movie-watching {
     border: 1px solid black;
-    box-shadow: 1px 1px 1px black;
+    box-shadow: 2px 2px 5px #212121;
     color: #212121;
 }
 
 .friend-box {
-    border: 1px solid black;
-    box-shadow: 1px 1px 1px black;
-    color: #212121;
+    box-shadow: 1px 1px 1px #212121;
+    color: #FFFFFF;
+    background-color: #212121;
 }
 
 .friend-box:hover {
     cursor: pointer;
-    /*background-color: #FFC107;*/
+    color: #BDBDBD;
+    transition: background-color 250ms linear, color 250ms linear;
 }
 
 .body {
@@ -69,10 +69,16 @@
 .page-base {
     min-height: 100vh;
     background-color: #CFD8DC;
+    background-image: url("https://www.esa.int/var/esa/storage/images/19716864-11-eng-GB/ESA_root_pillars.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 .navigation-bar {
     background-color: #455A64;
+    box-shadow: 2px 2px 1px 1px #212121;
 }
 
 .btn-primary {
@@ -84,13 +90,13 @@
 
 .btn-primary:hover {
     background-color: #009688 !important;
-    color:#212121 !important;
+    /*color:#212121 !important;*/
     border-color: #009688 !important;
 }
 
 .main-box{
-    background-color: rgba(96, 125, 139, 0.5);
-    box-shadow: 5px 5px 5px #3e4d5a;
-    color: #212121;
+    background-color: rgba(69, 90, 100, 0.95);
+    color: #FFFFFF;
+    box-shadow: 2px 2px 2px #3e4d5a;
 }
 
