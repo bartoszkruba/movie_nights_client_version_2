@@ -43,7 +43,7 @@ class Navigation extends Component {
 
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar dark expand="md" className="navigation-bar">
           <RouterLink exact to="/">
             <span className="Nav-Item navigation-link p-3">
               <b>Movie Nights</b>

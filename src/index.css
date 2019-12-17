@@ -1,43 +1,96 @@
+.movie-item {
+    color: #FFFFFF;
+    background-color: #455A64;
+    box-shadow: 2px 2px 2px #212121;
+}
+
 .movie-item:hover {
+    transition: background-color 250ms linear, color 250ms linear;
     cursor: pointer;
-    background-color: gainsboro;
+    /*color: #FFC107;*/
+    background-color: #212121;
 }
 
 .navigation-link {
-    color: darkblue !important;
+    color: #FFFFFF !important;
 }
 
 .navigation-link:hover {
     cursor: pointer;
-    text-decoration: underline;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .login-box {
-    border: 1px solid black;
-    box-shadow: 1px 1px 1px black;
+    box-shadow: 1px 1px 1px #212121;
+    /*border: 1px solid #212121;*/
+    color: #FFFFFF;
+    background-color: #455A64;
 }
 
 .login-box:hover {
     cursor: pointer;
-    background-color: gainsboro;
+    /*color: #FFC107;*/
+    background-color: #212121;
+    transition: background-color 250ms linear, color 250ms linear;
+}
+
+.login-box-link:hover {
+    text-decoration: none;
 }
 
 .movie-watching:hover {
     cursor: pointer;
-    background-color: gainsboro;
+    /*background-color: #FFC107;*/
 }
 
 .movie-watching {
     border: 1px solid black;
     box-shadow: 1px 1px 1px black;
+    color: #212121;
 }
 
 .friend-box {
     border: 1px solid black;
     box-shadow: 1px 1px 1px black;
+    color: #212121;
 }
 
 .friend-box:hover {
     cursor: pointer;
-    background-color: gainsboro;
+    /*background-color: #FFC107;*/
 }
+
+.body {
+    min-height: 100vh;
+    background-color: #CFD8DC;
+}
+
+.page-base {
+    min-height: 100vh;
+    background-color: #CFD8DC;
+}
+
+.navigation-bar {
+    background-color: #455A64;
+}
+
+.btn-primary {
+    background-color: #212121 !important;
+    color: #FFFFFF;
+    border-color: #212121 !important;
+    box-shadow: 1px 1px 1px #212121;
+}
+
+.btn-primary:hover {
+    background-color: #009688 !important;
+    color:#212121 !important;
+    border-color: #009688 !important;
+}
+
+.main-box{
+    background-color: rgba(96, 125, 139, 0.5);
+    box-shadow: 5px 5px 5px #3e4d5a;
+    color: #212121;
+}
+

@@ -27,7 +27,7 @@ class Login extends Component {
 class SocialLogin extends Component {
   render() {
     return (
-      <a href={GOOGLE_AUTH_URL}>
+      <a href={GOOGLE_AUTH_URL} className="login-box-link">
         <div className="m-auto col-4 text-center p-5 login-box">
           <span className="text-center">Log in with Google</span>
         </div>

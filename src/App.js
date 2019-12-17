@@ -60,20 +60,22 @@ class App extends Component {
     const myEventsPage = () => <MyEventsPage/>;
     const createNewEventPage = () => <CreateMovieEventPage/>;
 
-    return <Router>
-      <Navigation user={this.state.user} setUser={this.setUser} redirect={this.redirect}/>
-      <div className="container mt-3">
-        <Route exact path="/" component={index}/>
-        <Route exact path="/login" component={login}/>
-        <Route exact path="/oauth2/redirect" component={oauth2}/>
-        <Route exact path="/movies" component={movieSearchPage}/>
-        <Route path="/movie/:id" render={props => <MovieDetailsPage {...props} setUser={this.setUser}/>}/>
-        <Route exact path="/friends" component={friendsPage}/>
-        <Route exact path="/info" component={infoPage}/>
-        <Route exact path="/my-events" component={myEventsPage}/>
-        <Route exact path="/create-new-event" component={createNewEventPage}/>
-      </div>
-    </Router>
+    return <div className="page-base pb-5">
+      <Router>
+        <Navigation user={this.state.user} setUser={this.setUser} redirect={this.redirect}/>
+        <div className="container mt-5 main-box p-5">
+          <Route exact path="/" component={index}/>
+          <Route exact path="/login" component={login}/>
+          <Route exact path="/oauth2/redirect" component={oauth2}/>
+          <Route exact path="/movies" component={movieSearchPage}/>
+          <Route path="/movie/:id" render={props => <MovieDetailsPage {...props} setUser={this.setUser}/>}/>
+          <Route exact path="/friends" component={friendsPage}/>
+          <Route exact path="/info" component={infoPage}/>
+          <Route exact path="/my-events" component={myEventsPage}/>
+          <Route exact path="/create-new-event" component={createNewEventPage}/>
+        </div>
+      </Router>
+    </div>
   }
 }
 
