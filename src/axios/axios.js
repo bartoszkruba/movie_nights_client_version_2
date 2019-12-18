@@ -152,15 +152,16 @@ const getPossibleTimes = async (token, attendees, movieId, startTime, weekdays) 
   })
 };
 
-const createMovieWatching = async (token, attendees, movieId, startTime) => {
-  let query = "?movieId=" + movieId + "&startTime=" + startTime + "&attendees=";
-  for (let attendee of attendees) {
-    query += attendee.id;
-    if (attendees.indexOf(attendee) !== attendees.length - 1) {
-      query += ",";
-    }
-  }
-  return await client.post("/api/calendar/me/movieWatching" + query, {}, {
+const createMovieWatching = async (token, attendees, movieId, startTime, location) => {
+
+  attendees = attendees.map(attendee => attendee.id);
+
+  return await client.post("/api/calendar/me/movieWatching", {
+    attendees,
+    movieId,
+    startTime,
+    location
+  }, {
     headers: {
       'Content-Type': "application/json",
       Authorization: "Bearer " + token,

@@ -150,7 +150,7 @@ class CreateMovieEventPage extends Component {
 
     try {
       await axios.createMovieWatching(token, this.state.choosenFriends, this.state.choosenMovie.imdbID,
-        this.state.chosenTime * 1000);
+        this.state.chosenTime * 1000, this.state.location);
       this.setState({loading: false, stage: "finished"})
     } catch (e) {
       console.log(e);
