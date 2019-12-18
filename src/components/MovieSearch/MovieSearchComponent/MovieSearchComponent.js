@@ -4,6 +4,7 @@ import axios from "../../../axios/axios";
 import {Pagination, PaginationItem, PaginationLink} from "reactstrap";
 import SearchBar from "../SearchBar/SearchBar";
 import MovieList from "../MovieList/MovieList";
+import {Redirect} from "react-router-dom";
 
 class MovieSearchComponent extends Component {
   state = {
@@ -36,8 +37,9 @@ class MovieSearchComponent extends Component {
         }
       })
     } catch (e) {
+      console.log(e);
       if (e.response.status === 401 || e.response.status === 403) {
-        this.props.redirect("/");
+        this.setState({redirect: "/"})
       } else {
         this.setState({error: e.response.data.error})
       }
@@ -77,6 +79,9 @@ class MovieSearchComponent extends Component {
   }
 
   render() {
+
+    if (this.state.redirect) return <Redirect to={this.state.redirect}/>;
+
     return <div className="row">
       <div className="col-12 m-auto">
         <SearchBar onSearch={this.handleSearch} error={this.state.error}/>
