@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Input, Label} from "reactstrap";
+import {Button, Col, FormGroup, Input, Label} from "reactstrap";
 import MovieSearchComponent from "../MovieSearch/MovieSearchComponent/MovieSearchComponent";
 import {ACCESS_TOKEN} from "../../constants/constants";
 import TimePicker from "rc-time-picker";
@@ -25,7 +25,8 @@ class CreateMovieEventPage extends Component {
       friday: true,
       saturday: true,
       sunday: true
-    }
+    },
+    location: ""
   };
 
   chooseMovieButtonClicked = () => {
@@ -128,7 +129,7 @@ class CreateMovieEventPage extends Component {
   };
 
   timePicked = value => {
-    this.setState({chosenTime: value, stage: "finish"})
+    this.setState({chosenTime: value, stage: "chose location"})
   };
 
   renderSuggestedTimes = () => {
@@ -161,6 +162,14 @@ class CreateMovieEventPage extends Component {
     const weekdays = {...this.state.weekdays};
     weekdays[e.target.name] = !weekdays[e.target.name];
     this.setState({weekdays});
+  };
+
+  locationChanged = e => {
+    this.setState({location: e.target.value})
+  };
+
+  locationConfirmed = e => {
+    this.setState({stage: "finish"})
   };
 
   renderPage = () => {
@@ -294,6 +303,42 @@ class CreateMovieEventPage extends Component {
         {this.state.suggestedTimes && !this.state.loading && this.renderSuggestedTimes()}
       </div>
     }
+
+    if (this.state.stage === "chose location") {
+      return <div className="mt-5">
+        <div className="row">
+          <div className="col-12">
+            <h4 className="text-center">Movie: {this.state.choosenMovie.title}, {this.state.choosenMovie.runtime}</h4>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <h4 className="text-center">Friends: {this.state.choosenFriends.map(friend => friend.name + " | ")}</h4>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <h4
+              className="text-center">Time: {moment.unix(this.state.chosenTime).format('dddd, MMMM Do, YYYY HH:mm ')}</h4>
+          </div>
+        </div>
+        <div className="row mt-4">
+          <div className="col-12">
+            <h3 className="m-auto text-center">Chose Location</h3>
+          </div>
+        </div>
+        <FormGroup row className="mt-3">
+          <Col sm={10}>
+            <Input type="text" name="location" placeholder="location" value={this.state.location}
+                   onChange={this.locationChanged}/>
+          </Col>
+          <Col>
+            <Button color="primary" onClick={this.locationConfirmed}>Continue</Button>
+          </Col>
+        </FormGroup>
+      </div>
+    }
+
     if (this.state.stage === "finish") {
       return <div className="mt-5">
         <div className="row">
@@ -310,6 +355,12 @@ class CreateMovieEventPage extends Component {
           <div className="col-12">
             <h4
               className="text-center">Time: {moment.unix(this.state.chosenTime).format('dddd, MMMM Do, YYYY HH:mm ')}</h4>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <h4
+              className="text-center">Location: {this.state.location}</h4>
           </div>
         </div>
         <div className="row mt-4">
